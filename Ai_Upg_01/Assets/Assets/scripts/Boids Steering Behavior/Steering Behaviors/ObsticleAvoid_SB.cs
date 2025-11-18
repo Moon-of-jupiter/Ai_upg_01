@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ObsticleAvoid_SB : SteeringBehavior
 {
@@ -11,20 +12,22 @@ public class ObsticleAvoid_SB : SteeringBehavior
         float angleRad = agent.angle;
 
         Vector3 direction = transform.forward;
+        
+
 
         if (agent != null)
         {
             direction = agent.agent.GetVelocity.normalized;
         }
 
-        if(Raycast(agent.agent.velocity.normalized * agent.radius, agent))
+        if(!Raycast(agent.agent.velocity.normalized * agent.radius, agent))
         {
-            return agent.agent.velocity;
+            return agent.agent.velocity.normalized * speed;
         }
 
 
 
-        for (int i = 0; i >= res; i++)
+        for (int i = 0; i <= res; i++)
         {
             float lerpValue = i / (float)res;
 
@@ -37,7 +40,15 @@ public class ObsticleAvoid_SB : SteeringBehavior
             Vector3 l = Vector3.RotateTowards(transform.forward, -transform.forward, newAngle, 1) * agent.radius;
             Vector3 r = Vector3.RotateTowards(transform.forward, -transform.forward, -newAngle, 1) * agent.radius;
 
-            
+            if (!Raycast(l, agent))
+            {
+                return l.normalized * speed;
+            }
+
+            if (!Raycast(r, agent))
+            {
+                return r.normalized * speed;
+            }
 
         }
 
@@ -48,11 +59,20 @@ public class ObsticleAvoid_SB : SteeringBehavior
     public bool Raycast(Vector3 ray, BoidNeighbourhood agent)
     {
 
-        bool succsess = agent.agent.controller.Raycast(transform.position, out var hit);
+        bool succsess = agent.agent.controller.Raycast(transform.position + ray, out var hit);
 
         
 
-        return true;
+        if (succsess)
+        {
+            Debug.DrawLine(transform.position, hit.position, Color.red);
+        }
+        else
+        {
+            Debug.DrawLine(transform.position, hit.position, Color.green);
+        }
+
+        return succsess;
     }
 
 }

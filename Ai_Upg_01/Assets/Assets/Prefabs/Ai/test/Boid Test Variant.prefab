@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5194341835815340241}
   - component: {fileID: 1843855310783490482}
   - component: {fileID: 3444554778136739543}
-  - component: {fileID: 7057639340084315982}
+  - component: {fileID: 204821763334336443}
   m_Layer: 0
   m_Name: Boid Behavior
   m_TagString: Untagged
@@ -71,7 +71,7 @@ MonoBehaviour:
   - {fileID: 5194341835815340241}
   - {fileID: 1843855310783490482}
   - {fileID: 3444554778136739543}
-  - {fileID: 7057639340084315982}
+  - {fileID: 204821763334336443}
   maxVel: 1000
 --- !u!114 &8641132093780810007
 MonoBehaviour:
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
---- !u!114 &7057639340084315982
+--- !u!114 &204821763334336443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,9 +134,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6830024207567961284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26b521c705fb08479d25a670fffa54e, type: 3}
+  m_Script: {fileID: 11500000, guid: ed7b988ceaf46194d9e61d5107a2e85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  res: 6
   speed: 15
 --- !u!1001 &2243163425449401908
 PrefabInstance:
