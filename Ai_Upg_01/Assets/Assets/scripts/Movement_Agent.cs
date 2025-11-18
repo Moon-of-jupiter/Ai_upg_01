@@ -33,7 +33,10 @@ public class Movement_Agent : MonoBehaviour
         velocity += acceleration * Time.deltaTime;
         //transform.forward = GetVelocity.normalized;
 
+        velocity.y *= 0.1f;
         
+        if(float.IsNaN(velocity.z)) velocity = Vector3.zero;
+
         controller.velocity = velocity;
 
         acceleration = Vector3.zero;

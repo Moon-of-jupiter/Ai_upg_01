@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1843855310783490482}
   - component: {fileID: 3444554778136739543}
   - component: {fileID: 204821763334336443}
+  - component: {fileID: 7351228507117214772}
   m_Layer: 0
   m_Name: Boid Behavior
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beea7b1454fc56e4386c722211a17fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
+  radius: 5
   angle: 150
   agent: {fileID: 0}
 --- !u!114 &3251366153484641926
@@ -72,6 +73,7 @@ MonoBehaviour:
   - {fileID: 1843855310783490482}
   - {fileID: 3444554778136739543}
   - {fileID: 204821763334336443}
+  - {fileID: 7351228507117214772}
   maxVel: 1000
 --- !u!114 &8641132093780810007
 MonoBehaviour:
@@ -112,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b57e65b00488458e13ecddb8ebbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
 --- !u!114 &3444554778136739543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924bf778334fa2f44bfc77dc73d872cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
 --- !u!114 &204821763334336443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   res: 6
+  speed: 4
+--- !u!114 &7351228507117214772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830024207567961284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26b521c705fb08479d25a670fffa54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   speed: 15
 --- !u!1001 &2243163425449401908
 PrefabInstance:

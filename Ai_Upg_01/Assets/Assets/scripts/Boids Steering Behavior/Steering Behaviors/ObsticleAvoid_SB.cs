@@ -12,18 +12,21 @@ public class ObsticleAvoid_SB : SteeringBehavior
         float angleRad = agent.angle;
 
         Vector3 direction = transform.forward;
-        
 
+        Vector3 force_sum = Vector3.zero;
+
+        
 
         if (agent != null)
         {
             direction = agent.agent.GetVelocity.normalized;
         }
 
-        if(!Raycast(agent.agent.velocity.normalized * agent.radius, agent))
+        if(Raycast(agent.agent.velocity.normalized * agent.radius, agent))
         {
-            return agent.agent.velocity.normalized * speed;
+            force_sum += agent.agent.velocity.normalized * speed;
         }
+        
 
 
 
@@ -40,20 +43,22 @@ public class ObsticleAvoid_SB : SteeringBehavior
             Vector3 l = Vector3.RotateTowards(transform.forward, -transform.forward, newAngle, 1) * agent.radius;
             Vector3 r = Vector3.RotateTowards(transform.forward, -transform.forward, -newAngle, 1) * agent.radius;
 
-            if (!Raycast(l, agent))
+            if (Raycast(l, agent))
             {
-                return l.normalized * speed;
+                force_sum += l.normalized * speed;
             }
+            
 
-            if (!Raycast(r, agent))
+            if (Raycast(r, agent))
             {
-                return r.normalized * speed;
+                force_sum += r.normalized * speed;
             }
+            
 
         }
 
 
-        return base.GetTargetSteering(agent);
+        return -force_sum;
     }
 
     public bool Raycast(Vector3 ray, BoidNeighbourhood agent)
