@@ -17,6 +17,8 @@ public class AgentManager : MonoBehaviour
 
         agent.Accelerate(new Vector3(100, 0, 100));
 
+        
+
         new_agent.transform.position = pos;
     }
 }

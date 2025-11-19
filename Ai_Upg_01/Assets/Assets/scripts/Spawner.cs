@@ -7,7 +7,9 @@ public class Spawner : MonoBehaviour
     public int amount;
 
     public GameObject template;
+    public float timer_speed = 10;
 
+    public float timer_counter;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,15 +18,28 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (agentManager == null || template == null) return;
+        if (amount <= 0) return;
 
-        while(amount > 0)
+        timer_counter += timer_speed;
+
+        while (timer_counter > 0)
         {
+
+            timer_counter--;
+
+            if (amount <= 0) break;
+
+
+
+
             amount--;
 
             agentManager.SpawnAgent(template, transform.position);
         }
+
+        
     }
 }

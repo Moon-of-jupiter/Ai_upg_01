@@ -18,6 +18,6 @@ public class Seek_SB : SteeringBehavior
 
         Vector3 desierd_velocity = (target.position - agent.agent.GetPos() ).normalized * speed;
 
-        return desierd_velocity - agent.agent.GetVelocity;
+        return desierd_velocity - agent.agent.GetVelocity();
     }
 }

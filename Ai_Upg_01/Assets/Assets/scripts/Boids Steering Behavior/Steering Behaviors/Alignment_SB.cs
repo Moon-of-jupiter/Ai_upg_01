@@ -11,7 +11,7 @@ public class Alignment_SB : SteeringBehavior
 
         foreach(var n in agent.neighbours)
         {
-            vSum += n.GetVelocity;
+            vSum += n.GetVelocity();
             c++;
         }
 
@@ -21,6 +21,6 @@ public class Alignment_SB : SteeringBehavior
 
 
 
-        return avrgV - agent.agent.GetVelocity ;
+        return avrgV - agent.agent.GetVelocity();
     }
 }

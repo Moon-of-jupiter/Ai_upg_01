@@ -10,8 +10,12 @@ public class Separation_SB : SteeringBehavior
 
         foreach(var n in agent.neighbours)
         {
-            Vector3 f = n.GetDirection(agent.agent);
-            
+            Vector3 f = agent.agent.GetPos() - n.GetPos();
+
+            float mag = f.magnitude;
+
+            if(mag <= 0) return Vector3.zero;
+
             f *= 1 / f.magnitude;
 
             forceSum += f * speed;

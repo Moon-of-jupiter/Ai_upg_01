@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 1843855310783490482}
   - component: {fileID: 3444554778136739543}
   - component: {fileID: 204821763334336443}
-  - component: {fileID: 7351228507117214772}
+  - component: {fileID: 8403109749305423863}
+  - component: {fileID: 5298270562635384120}
   m_Layer: 0
   m_Name: Boid Behavior
   m_TagString: Untagged
@@ -51,9 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beea7b1454fc56e4386c722211a17fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 4
   angle: 150
   agent: {fileID: 0}
+  updateTime: 0
+  updateCounter: 0
 --- !u!114 &3251366153484641926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +76,8 @@ MonoBehaviour:
   - {fileID: 1843855310783490482}
   - {fileID: 3444554778136739543}
   - {fileID: 204821763334336443}
-  - {fileID: 7351228507117214772}
+  - {fileID: 8403109749305423863}
+  - {fileID: 5298270562635384120}
   maxVel: 1000
 --- !u!114 &8641132093780810007
 MonoBehaviour:
@@ -114,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b57e65b00488458e13ecddb8ebbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
 --- !u!114 &3444554778136739543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924bf778334fa2f44bfc77dc73d872cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
 --- !u!114 &204821763334336443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   res: 6
-  speed: 4
---- !u!114 &7351228507117214772
+  speed: 10
+  radius_mult: 0.5
+--- !u!114 &8403109749305423863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,10 +156,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6830024207567961284}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3b1b1ba50502242a900e68b0f638c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  res: 6
+  radius_mult: 3
+  speed: 1
+  targetSpeed: 20
+  rightLeaning: 1
+--- !u!114 &5298270562635384120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830024207567961284}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a26b521c705fb08479d25a670fffa54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  target_speed: 10
+  speed: 1
 --- !u!1001 &2243163425449401908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,10 +236,32 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2269615301324185663, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 329666668205477545}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2413321793969715848, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2136416796344587865}
   m_SourcePrefab: {fileID: 100100000, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
 --- !u!4 &26487610372750859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2269615301324185663, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
   m_PrefabInstance: {fileID: 2243163425449401908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4493614011099292860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2413321793969715848, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+  m_PrefabInstance: {fileID: 2243163425449401908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2136416796344587865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493614011099292860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42026eaac8e14b479ed865160ae54aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  lerpValue: 0.5

@@ -7,24 +7,25 @@ public class ObsticleAvoid_SB : SteeringBehavior
 
     public float speed = 1;
 
+    public float radius_mult = 1f;
+
     public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
     {
         float angleRad = agent.angle;
 
-        Vector3 direction = transform.forward;
+        float radius = agent.radius * radius_mult;
+
+        Vector3 direction = agent.agent.GetVelocity().normalized;
 
         Vector3 force_sum = Vector3.zero;
 
+
         
-
-        if (agent != null)
+        if(agent.Raycast(agent.agent.GetVelocity().normalized * radius))
         {
-            direction = agent.agent.GetVelocity.normalized;
-        }
+            
 
-        if(Raycast(agent.agent.velocity.normalized * agent.radius, agent))
-        {
-            force_sum += agent.agent.velocity.normalized * speed;
+            force_sum += agent.agent.GetVelocity().normalized ;
         }
         
 
@@ -40,44 +41,32 @@ public class ObsticleAvoid_SB : SteeringBehavior
 
 
 
-            Vector3 l = Vector3.RotateTowards(transform.forward, -transform.forward, newAngle, 1) * agent.radius;
-            Vector3 r = Vector3.RotateTowards(transform.forward, -transform.forward, -newAngle, 1) * agent.radius;
+            Vector3 l = Vector3.RotateTowards(transform.forward, -transform.forward, newAngle, 1) * radius;
+            Vector3 r = Vector3.RotateTowards(transform.forward, -transform.forward, -newAngle, 1) * radius;
 
-            if (Raycast(l, agent))
+            if (agent.Raycast(l))
             {
-                force_sum += l.normalized * speed;
+                
+                force_sum += l.normalized ;
             }
             
 
-            if (Raycast(r, agent))
+            if (agent.Raycast(r))
             {
-                force_sum += r.normalized * speed;
+                
+                force_sum += r.normalized ;
             }
             
 
         }
 
+        
+
+        force_sum = force_sum.normalized * speed;
 
         return -force_sum;
     }
 
-    public bool Raycast(Vector3 ray, BoidNeighbourhood agent)
-    {
-
-        bool succsess = agent.agent.controller.Raycast(transform.position + ray, out var hit);
-
-        
-
-        if (succsess)
-        {
-            Debug.DrawLine(transform.position, hit.position, Color.red);
-        }
-        else
-        {
-            Debug.DrawLine(transform.position, hit.position, Color.green);
-        }
-
-        return succsess;
-    }
+    
 
 }

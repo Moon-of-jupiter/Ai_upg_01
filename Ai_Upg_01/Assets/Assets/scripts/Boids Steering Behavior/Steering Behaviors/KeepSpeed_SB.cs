@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class KeepSpeed_SB : SteeringBehavior
 {
-
+    public float target_speed = 10;
     public float speed = 1;
     public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
     {
-        var direction = agent.agent.GetVelocity.normalized;
+        var target_v = agent.agent.GetVelocity().normalized * target_speed;
 
-        direction *= speed;
+        Vector3 force = target_v - agent.agent.GetVelocity();
 
-        return direction;
+        return force * speed;
     }
 }

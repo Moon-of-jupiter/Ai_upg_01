@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BoidNeighbourhood : MonoBehaviour
 {
@@ -7,10 +8,12 @@ public class BoidNeighbourhood : MonoBehaviour
 
     [SerializeField] public float angle = 90;
 
-    public LinkedList<Movement_Agent> neighbours;
+    public LinkedList<Gen_Agent> neighbours;
 
     public Movement_Agent agent;
 
+    public int updateTime;
+    public int updateCounter;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +21,7 @@ public class BoidNeighbourhood : MonoBehaviour
         if(agent == null)
             agent = GetComponentInParent<Movement_Agent>();
 
-        neighbours = new LinkedList<Movement_Agent>();
+        neighbours = new LinkedList<Gen_Agent>();
     }
 
     private void OnDrawGizmosSelected()
@@ -32,7 +35,7 @@ public class BoidNeighbourhood : MonoBehaviour
 
         if(agent != null)
         {
-            direction = agent.GetVelocity.normalized;
+            direction = agent.GetVelocity().normalized;
         }
 
         Vector3[] l_vectors = new Vector3[res + 1];
@@ -85,13 +88,13 @@ public class BoidNeighbourhood : MonoBehaviour
 
         foreach(var n in neighbours)
         {
-            Debug.DrawRay(transform.position, agent.GetDirection(n), Color.red);
+            Debug.DrawRay(transform.position, GetDirection(agent,n), Color.red);
         }
 
     }
 
 
-    public void UpdateNeigbours(LinkedList<Movement_Agent> neighbours, float radius, float angle)
+    public void UpdateNeigbours(LinkedList<Gen_Agent> neighbours, float radius, float angle)
     {
         neighbours.Clear();
 
@@ -99,11 +102,11 @@ public class BoidNeighbourhood : MonoBehaviour
         {
             
 
-            if (agent.GetDistanceSQR(n) > radius * radius) continue;
+            if (GetDirection(agent, n).sqrMagnitude > radius * radius) continue;
 
             if (n == agent) continue;
 
-            if (Vector3.Angle(agent.GetForward(),agent.GetDirection(n)) > angle) continue;
+            if (Vector3.Angle(agent.GetVelocity(), GetDirection(agent, n)) > angle) continue;
             
 
             neighbours.AddLast(n);
@@ -112,10 +115,43 @@ public class BoidNeighbourhood : MonoBehaviour
         }
     }
 
+    private Vector3 GetDirection(Gen_Agent a, Gen_Agent b)
+    {
+        return b.GetPos() - a.GetPos(); 
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        UpdateNeigbours(neighbours,radius,angle);
+        if(updateCounter++ >= updateTime)
+        {
+            updateCounter = 0;
+            UpdateNeigbours(neighbours, radius, angle);
+        }
+
+        
+    }
+
+
+    public bool Raycast(Vector3 ray)
+    {
+
+        return Raycast(ray, out var hit);
+    }
+
+    public bool Raycast(Vector3 ray, out NavMeshHit hit)
+    {
+
+        bool succsess = agent.controller.Raycast(transform.position + ray, out hit);
+
+
+
+        if (succsess)
+        {
+            Debug.DrawLine(transform.position, hit.position, Color.yellow);
+        }
+
+        return succsess;
     }
 }

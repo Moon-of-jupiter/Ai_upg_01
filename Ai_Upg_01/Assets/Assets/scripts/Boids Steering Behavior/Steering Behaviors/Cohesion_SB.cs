@@ -23,7 +23,7 @@ public class Cohesion_SB : SteeringBehavior
 
         Vector3 desierd_velocity = (avragePos - agent.agent.GetPos()).normalized * speed;
 
-        return desierd_velocity - agent.agent.GetVelocity;
+        return desierd_velocity - agent.agent.GetVelocity();
 
     }
 }
