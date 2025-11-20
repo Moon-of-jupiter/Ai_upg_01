@@ -37,6 +37,11 @@ public class NavRaycastTest : MonoBehaviour
 
     }
 
+    public void RotateTest()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {

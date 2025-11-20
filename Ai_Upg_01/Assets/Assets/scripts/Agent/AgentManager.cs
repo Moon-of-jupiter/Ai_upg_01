@@ -4,12 +4,24 @@ using UnityEngine;
 public class AgentManager : MonoBehaviour
 {
 
-    public List<Movement_Agent> agents;
+    public List<Gen_Agent> agents;
 
+    public Transform agent_keeper;
+
+    public int seed;
+    private System.Random id_rand;
+
+    private void Awake()
+    {
+        if (agent_keeper == null) agent_keeper = transform;
+        id_rand = new System.Random(seed);
+    }
 
     public void SpawnAgent(GameObject template, Vector3 pos)
     {
         var new_agent = Instantiate(template);
+
+        new_agent.transform.parent = agent_keeper;
 
         Movement_Agent agent = new_agent.GetComponentInChildren<Movement_Agent>();
 
@@ -20,5 +32,10 @@ public class AgentManager : MonoBehaviour
         
 
         new_agent.transform.position = pos;
+
+        agent.rgnSeed = id_rand.Next();
     }
+
+    
+
 }

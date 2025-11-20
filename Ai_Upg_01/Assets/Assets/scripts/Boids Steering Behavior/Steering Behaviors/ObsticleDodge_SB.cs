@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class ObsticleDodge_SB : SteeringBehavior
 {
+
+
     public int res = 6;
 
     public float radius_mult = 1;
@@ -17,7 +19,10 @@ public class ObsticleDodge_SB : SteeringBehavior
 
     public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
     {
-        var target_v = ObsticleDodge(agent) * targetSpeed;
+       
+
+
+        var target_v = ObsticleDodge(agent, agent.agent.GetVelocity()) * targetSpeed;
 
         Vector3 force = target_v - agent.agent.GetVelocity();
 
@@ -26,15 +31,15 @@ public class ObsticleDodge_SB : SteeringBehavior
     }
 
 
-    public Vector3 ObsticleDodge(BoidNeighbourhood agent)
+    public Vector3 ObsticleDodge(BoidNeighbourhood agent, Vector3 sourceVector)
     {
         float angleRad = agent.angle;
 
         float radius = agent.radius * radius_mult;
 
-         
+        Vector3 direction = sourceVector.normalized;
 
-        Vector3 direction = agent.agent.GetVelocity().normalized;
+        
 
         Vector3 best_direction = direction;
 

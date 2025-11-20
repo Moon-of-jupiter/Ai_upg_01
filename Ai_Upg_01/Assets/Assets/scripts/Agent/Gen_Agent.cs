@@ -7,11 +7,13 @@ public abstract class Gen_Agent : MonoBehaviour
 
     public AgentManager agentManager;
 
-    
+    public int rgnSeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        
+
         OnAwake();
 
     }

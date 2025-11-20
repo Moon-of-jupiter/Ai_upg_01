@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 4524728073616218459}
   - component: {fileID: 1844232047502093871}
   - component: {fileID: 2042389866387577792}
+  - component: {fileID: 2520829399570593650}
   m_Layer: 0
   m_Name: Movement Agent
   m_TagString: Untagged
@@ -220,11 +221,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0eb9de778a5864f972547d1e4bd8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: {fileID: 0}
+  tags: {fileID: 2520829399570593650}
   agentManager: {fileID: 0}
   controller: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &2520829399570593650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413321793969715848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1139f7770355c4a44802a16147abb851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: []
 --- !u!1 &2477823530427180856
 GameObject:
   m_ObjectHideFlags: 0
