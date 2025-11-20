@@ -19,9 +19,7 @@ public class AgentManager : MonoBehaviour
 
     public void SpawnAgent(GameObject template, Vector3 pos)
     {
-        var new_agent = Instantiate(template);
-
-        new_agent.transform.parent = agent_keeper;
+        var new_agent = Instantiate(template, agent_keeper);
 
         Movement_Agent agent = new_agent.GetComponentInChildren<Movement_Agent>();
 
