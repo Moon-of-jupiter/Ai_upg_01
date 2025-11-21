@@ -22,15 +22,21 @@ public class Grazeing_Sheep_SM : Is_Near_GEN_SM
     {
         if(HasNearAgentsWithTag("danger", distance, neighbourhood.agent,neighbourhood))
         {
-            newState = "Spooked_Sheep_SM";
+            newState = "Flee_Sheep_SM";
             return true;
         }
 
-        if (CountNearAgentsWithTag("spooked", distance, boid_neighbourhood.agent, boid_neighbourhood) > spooked_threshold)
+        if (HasNearAgentsWithTag("flee", 100, boid_neighbourhood.agent, boid_neighbourhood))
         {
             newState = "Spooked_Sheep_SM";
             return true;
         }
+
+        //if (CountNearAgentsWithTag("spooked", 100, boid_neighbourhood.agent, boid_neighbourhood) > spooked_threshold)
+        //{
+        //    newState = "Spooked_Sheep_SM";
+        //    return true;
+        //}
 
         return base.CheckSwitchState(out newState);
     }

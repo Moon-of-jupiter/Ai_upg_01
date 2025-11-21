@@ -1,8 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class Spooked_Sheep_SM : Is_Near_GEN_SM
+public class Flee_Sheep_SM : Is_Near_GEN_SM
 {
     [SerializeField] private AgentNeighbourhood neighbourhood;
 
@@ -10,10 +8,9 @@ public class Spooked_Sheep_SM : Is_Near_GEN_SM
 
     public float timer;
 
-    public float max_time = 30;
+    public float max_time = 5;
 
-    public float distance = 5;
-
+    public float distance = 5f;
     protected void OnEnable()
     {
         timer = Time.time;
@@ -32,17 +29,11 @@ public class Spooked_Sheep_SM : Is_Near_GEN_SM
     {
         
 
-        if (HasNearAgentsWithTag("danger", distance, neighbourhood.agent, neighbourhood))
-        {
-            newState = "Flee_Sheep_SM";
-            return true;
-        }
-
-        if (CountNearAgentsWithTag("spooked", 100, boid_neighbourhood.agent, boid_neighbourhood) < 5)
+        if (!HasNearAgentsWithTag("danger", distance, neighbourhood.agent, neighbourhood))
         {
             if (Time.time - timer > max_time)
             {
-                newState = "Grazeing_Sheep_SM";
+                newState = "Spooked_Sheep_SM";
                 return true;
             }
         }
@@ -51,9 +42,8 @@ public class Spooked_Sheep_SM : Is_Near_GEN_SM
             timer = Time.time;
 
         }
+
         return base.CheckSwitchState(out newState);
 
     }
-
-   
 }
