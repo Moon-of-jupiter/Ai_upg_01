@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Gen_Agent : MonoBehaviour
+public class Gen_Agent : MonoBehaviour
 {
-    [SerializeField] private AgentTags tags;
+    public AgentTags tags;
 
     public AgentManager agentManager;
 
@@ -20,6 +20,9 @@ public abstract class Gen_Agent : MonoBehaviour
 
     protected virtual void OnAwake()
     {
+        if(tags == null)
+            tags = GetComponent<AgentTags>();
+
         if (agentManager == null)
             agentManager = GetComponentInParent<AgentManager>();
 

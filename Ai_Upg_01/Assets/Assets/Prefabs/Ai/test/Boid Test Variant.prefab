@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2812407033571635945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503336061899033529}
+  - component: {fileID: 814152117983309065}
+  m_Layer: 0
+  m_Name: Neighbourhood
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503336061899033529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812407033571635945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7993255408544711674}
+  m_Father: {fileID: 26487610372750859}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814152117983309065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812407033571635945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454e3519b6f244e4b81cda566c77fb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  radius: 6
+  updateTime: 1
+  updateCounter: 0
 --- !u!1 &6300184676777040237
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,9 +58,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108816053836357702}
-  - component: {fileID: 3485476539767375950}
+  - component: {fileID: 1279620199563587287}
+  - component: {fileID: 8068575533938830141}
   m_Layer: 0
-  m_Name: A
+  m_Name: Grazeing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +83,7 @@ Transform:
   - {fileID: 6081108498572833012}
   m_Father: {fileID: 7993255408544711674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3485476539767375950
+--- !u!114 &1279620199563587287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,15 +92,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 6300184676777040237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9903114958a822d48a37c5edabd1065a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97d6de460a3f4a741ae6cc8df90cce51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   is_active_state: 0
-  is_starting_state: 0
+  is_starting_state: 1
   is_registerd: 0
-  debug_state_color: {r: 1, g: 0, b: 0.052140713, a: 1}
+  debug_state_color: {r: 0.25498164, g: 1, b: 0, a: 1}
   debug_size: 0.1
-  toggle_state: 0
+  neighbourhood: {fileID: 0}
+  boid_neighbourhood: {fileID: 0}
+  distance: 5
+  spooked_threshold: 2
+--- !u!114 &8068575533938830141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300184676777040237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53dfc56d2d8c9e042a604519823827e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  added_tag: grazeing
+  tags: {fileID: 0}
 --- !u!1 &6403312543305409002
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,14 +143,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403312543305409002}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5108816053836357702}
   - {fileID: 307623459108324936}
-  m_Father: {fileID: 26487610372750859}
+  m_Father: {fileID: 1503336061899033529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3874447607568828477
 MonoBehaviour:
@@ -107,9 +174,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 307623459108324936}
-  - component: {fileID: 3346931680292318381}
+  - component: {fileID: 8173962501680620339}
+  - component: {fileID: 250950998857800648}
   m_Layer: 0
-  m_Name: B
+  m_Name: Spooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +199,7 @@ Transform:
   - {fileID: 8048018338225576471}
   m_Father: {fileID: 7993255408544711674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3346931680292318381
+--- !u!114 &8173962501680620339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,15 +208,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 6437518669308445129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60edef27222904843b05b955e00d6f36, type: 3}
+  m_Script: {fileID: 11500000, guid: 41dd47a573b0c6b4c8529b456d17a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   is_active_state: 0
-  is_starting_state: 1
+  is_starting_state: 0
   is_registerd: 0
-  debug_state_color: {r: 0.9593643, g: 1, b: 0, a: 1}
-  debug_size: 0.1
-  toggle_state: 0
+  debug_state_color: {r: 0.93207544, g: 0.6342831, b: 0, a: 1}
+  debug_size: 0.3
+  neighbourhood: {fileID: 0}
+  boid_neighbourhood: {fileID: 0}
+  timer: 0
+  max_time: 30
+--- !u!114 &250950998857800648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437518669308445129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53dfc56d2d8c9e042a604519823827e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  added_tag: spooked
+  tags: {fileID: 0}
 --- !u!1 &6830024207567961284
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +287,7 @@ MonoBehaviour:
   radius: 4
   angle: 150
   agent: {fileID: 0}
-  updateTime: 0
-  updateCounter: 0
+  neighbourhood: {fileID: 0}
 --- !u!114 &3251366153484641926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +427,7 @@ MonoBehaviour:
   radius: 4
   angle: 150
   agent: {fileID: 0}
-  updateTime: 0
-  updateCounter: 0
+  neighbourhood: {fileID: 0}
 --- !u!114 &5095038559565490244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +631,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boid Test Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2520829399570593650, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+      propertyPath: tags_on_start.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520829399570593650, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+      propertyPath: 'tags_on_start.Array.data[1]'
+      value: sheep
+      objectReference: {fileID: 0}
     - target: {fileID: 4524728073616218459, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.0911055
@@ -605,7 +696,7 @@ PrefabInstance:
       addedObject: {fileID: 6472161477557714363}
     - targetCorrespondingSourceObject: {fileID: 2269615301324185663, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7993255408544711674}
+      addedObject: {fileID: 1503336061899033529}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2413321793969715848, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
       insertIndex: -1

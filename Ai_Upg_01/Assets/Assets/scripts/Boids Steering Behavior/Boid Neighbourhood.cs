@@ -2,24 +2,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BoidNeighbourhood : MonoBehaviour
+public class BoidNeighbourhood : MonoBehaviour, INeighbourhood
 {
     [SerializeField] public float radius = 4;
 
     [SerializeField] public float angle = 90;
 
-    public LinkedList<Gen_Agent> neighbours;
+    public LinkedList<Gen_Agent> neighbours { get; private set; }
 
     public Movement_Agent agent;
 
-    public int updateTime;
-    public int updateCounter;
+    public AgentNeighbourhood neighbourhood;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if(agent == null)
             agent = GetComponentInParent<Movement_Agent>();
+
+        if(neighbourhood == null)
+            neighbourhood = GetComponentInParent<AgentNeighbourhood>();
+        
 
         neighbours = new LinkedList<Gen_Agent>();
     }
@@ -93,12 +96,12 @@ public class BoidNeighbourhood : MonoBehaviour
 
     }
 
-
+    
     public void UpdateNeigbours(LinkedList<Gen_Agent> neighbours, float radius, float angle)
     {
         neighbours.Clear();
 
-        foreach (var n in agent.agentManager.agents)
+        foreach (var n in neighbourhood.neighbours)
         {
             
 
@@ -115,6 +118,11 @@ public class BoidNeighbourhood : MonoBehaviour
         }
     }
 
+    public float DistanceSQR(Gen_Agent a, Gen_Agent b)
+    {
+        return (a.GetPos() - b.GetPos()).sqrMagnitude;
+    }
+
     private Vector3 GetDirection(Gen_Agent a, Gen_Agent b)
     {
         return b.GetPos() - a.GetPos(); 
@@ -124,13 +132,9 @@ public class BoidNeighbourhood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(updateCounter++ >= updateTime)
-        {
-            updateCounter = 0;
-            UpdateNeigbours(neighbours, radius, angle);
-        }
-
         
+        UpdateNeigbours(neighbours, radius, angle);
+
     }
 
 

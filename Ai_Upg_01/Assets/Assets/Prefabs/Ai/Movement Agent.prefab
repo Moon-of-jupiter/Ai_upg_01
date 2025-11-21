@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags: {fileID: 2520829399570593650}
   agentManager: {fileID: 0}
+  rgnSeed: 0
   controller: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
@@ -238,7 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1139f7770355c4a44802a16147abb851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  tags_on_start:
+  - moveing
 --- !u!1 &2477823530427180856
 GameObject:
   m_ObjectHideFlags: 0
