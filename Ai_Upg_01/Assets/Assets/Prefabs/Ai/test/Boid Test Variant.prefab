@@ -1053,11 +1053,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976050587119791197, guid: aa49f3cdaa13f2448965ac863b06741a, type: 3}
       propertyPath: speed
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4819136735727920998, guid: aa49f3cdaa13f2448965ac863b06741a, type: 3}
       propertyPath: m_Name
       value: Flee Boid Behavior
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443554818179425742, guid: aa49f3cdaa13f2448965ac863b06741a, type: 3}
+      propertyPath: radius
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7307063196739686361, guid: aa49f3cdaa13f2448965ac863b06741a, type: 3}
       propertyPath: speed
