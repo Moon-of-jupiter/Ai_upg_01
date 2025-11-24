@@ -38,7 +38,7 @@ public class Spooked_Sheep_SM : Is_Near_GEN_SM
             return true;
         }
 
-        if (CountNearAgentsWithTag("spooked", 100, boid_neighbourhood.agent, boid_neighbourhood) < 5)
+        if (CountNearAgentsWithTag("spooked", 100, boid_neighbourhood.agent, boid_neighbourhood) < 5 || Time.time - timer > max_time * 10)
         {
             if (Time.time - timer > max_time)
             {

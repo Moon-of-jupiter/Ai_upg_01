@@ -1,17 +1,17 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Cohesion_SB : SteeringBehavior
+public class Cohesion_SB : SB_OnCollection
 {
     public float speed = 10;
 
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
         Vector3 avragePos = Vector3.zero;
 
 
         float c = 0;
-        foreach(var n in agent.neighbours)
+        foreach(var n in collection.collection)
         {
             avragePos += n.GetPos();
             c++;
@@ -21,9 +21,9 @@ public class Cohesion_SB : SteeringBehavior
         avragePos /= c;
 
 
-        Vector3 desierd_velocity = (avragePos - agent.agent.GetPos()).normalized * speed;
+        Vector3 desierd_velocity = (avragePos - agent.GetPos()).normalized * speed;
 
-        return desierd_velocity - agent.agent.GetVelocity();
+        return desierd_velocity - agent.GetVelocity();
 
     }
 }

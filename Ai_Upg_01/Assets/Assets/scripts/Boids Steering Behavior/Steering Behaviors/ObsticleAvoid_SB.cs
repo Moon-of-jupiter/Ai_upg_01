@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class ObsticleAvoid_SB : SteeringBehavior
+public class ObsticleAvoid_SB : SB_Raycaster
 {
     public int res = 6;
 
@@ -9,23 +9,23 @@ public class ObsticleAvoid_SB : SteeringBehavior
 
     public float radius_mult = 1f;
 
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
-        float angleRad = agent.angle;
+        float angleRad = boidNeighbourhood.angle;
 
-        float radius = agent.radius * radius_mult;
+        float radius = boidNeighbourhood.radius * radius_mult;
 
-        Vector3 direction = agent.agent.GetVelocity().normalized;
+        Vector3 direction = boidNeighbourhood.agent.GetVelocity().normalized;
 
         Vector3 force_sum = Vector3.zero;
 
 
         
-        if(agent.Raycast(agent.agent.GetVelocity().normalized * radius))
+        if(boidNeighbourhood.Raycast(agent.GetVelocity().normalized * radius))
         {
             
 
-            force_sum += agent.agent.GetVelocity().normalized ;
+            force_sum += agent.GetVelocity().normalized ;
         }
         
 
@@ -44,14 +44,14 @@ public class ObsticleAvoid_SB : SteeringBehavior
             Vector3 l = Vector3.RotateTowards(transform.forward, -transform.forward, newAngle, 1) * radius;
             Vector3 r = Vector3.RotateTowards(transform.forward, -transform.forward, -newAngle, 1) * radius;
 
-            if (agent.Raycast(l))
+            if (boidNeighbourhood.Raycast(l))
             {
                 
                 force_sum += l.normalized ;
             }
             
 
-            if (agent.Raycast(r))
+            if (boidNeighbourhood.Raycast(r))
             {
                 
                 force_sum += r.normalized ;

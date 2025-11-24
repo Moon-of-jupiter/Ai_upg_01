@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ObsticleDodge_SB : SteeringBehavior
+public class ObsticleDodge_SB : SB_Raycaster
 {
 
 
@@ -17,14 +17,14 @@ public class ObsticleDodge_SB : SteeringBehavior
 
     public bool rightLeaning;
 
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
        
 
 
-        var target_v = ObsticleDodge(agent, agent.agent.GetVelocity()) * targetSpeed;
+        var target_v = ObsticleDodge(boidNeighbourhood, agent.GetVelocity()) * targetSpeed;
 
-        Vector3 force = target_v - agent.agent.GetVelocity();
+        Vector3 force = target_v - agent.GetVelocity();
 
         return force * speed;
 

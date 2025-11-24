@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BoidNeighbourhood : MonoBehaviour, INeighbourhood
+public class BoidNeighbourhood : AgentCollection, INeighbourhood
 {
     [SerializeField] public float radius = 4;
 
@@ -17,14 +17,18 @@ public class BoidNeighbourhood : MonoBehaviour, INeighbourhood
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         if(agent == null)
             agent = GetComponentInParent<Movement_Agent>();
 
         if(neighbourhood == null)
             neighbourhood = GetComponentInParent<AgentNeighbourhood>();
-        
+
 
         neighbours = new LinkedList<Gen_Agent>();
+
+        collection = neighbours;
+
     }
 
     private void OnDrawGizmosSelected()

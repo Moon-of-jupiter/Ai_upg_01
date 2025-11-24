@@ -4,11 +4,11 @@ public class KeepSpeed_SB : SteeringBehavior
 {
     public float target_speed = 10;
     public float speed = 1;
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
-        var target_v = agent.agent.GetVelocity().normalized * target_speed;
+        var target_v = agent.GetVelocity().normalized * target_speed;
 
-        Vector3 force = target_v - agent.agent.GetVelocity();
+        Vector3 force = target_v - agent.GetVelocity();
 
         return force * speed;
     }

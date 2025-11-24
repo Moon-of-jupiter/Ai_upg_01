@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Alignment_SB : SteeringBehavior
+public class Alignment_SB : SB_OnCollection
 {
 
     public float speed = 1;
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
         Vector3 vSum = Vector3.zero;
         float c = 0;
 
-        foreach(var n in agent.neighbours)
+        foreach(var n in collection.collection)
         {
             vSum += n.GetVelocity();
             c++;
@@ -21,6 +21,6 @@ public class Alignment_SB : SteeringBehavior
 
 
 
-        return avrgV - agent.agent.GetVelocity();
+        return avrgV - agent.GetVelocity();
     }
 }

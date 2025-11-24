@@ -11,13 +11,13 @@ public class Seek_SB : SteeringBehavior
         if(transform == null) target = transform;
     }
 
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
 
 
 
-        Vector3 desierd_velocity = (target.position - agent.agent.GetPos() ).normalized * speed;
+        Vector3 desierd_velocity = (target.position - agent.GetPos() ).normalized * speed;
 
-        return desierd_velocity - agent.agent.GetVelocity();
+        return desierd_velocity - agent.GetVelocity();
     }
 }

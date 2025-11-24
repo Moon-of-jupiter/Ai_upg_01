@@ -7,13 +7,13 @@ public class Wander_SB : SteeringBehavior
 
     public float drift_speed = 1;
 
-    public override Vector3 GetTargetSteering(BoidNeighbourhood agent)
+    public override Vector3 GetTargetSteering()
     {
-        Vector3 direction = agent.agent.GetVelocity().normalized;
+        Vector3 direction = agent.GetVelocity().normalized;
 
         Vector3 left = new Vector3(direction.z, direction.y, -direction.x);
 
-        Vector3 force = left * GetSmoothRandom(Time.time * drift_speed + agent.agent.rgnSeed % 500);
+        Vector3 force = left * GetSmoothRandom(Time.time * drift_speed + agent.rgnSeed % 500);
 
         Debug.DrawRay(transform.position, force, Color.cyan);
         Debug.DrawRay(transform.position, left, Color.yellow);

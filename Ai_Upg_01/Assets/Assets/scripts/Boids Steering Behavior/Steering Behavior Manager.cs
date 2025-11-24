@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SteeringBehaviorManager : MonoBehaviour
 {
-    public BoidNeighbourhood neighbourhood;
+    public Movement_Agent agent;
 
     
 
@@ -16,8 +16,8 @@ public class SteeringBehaviorManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(neighbourhood == null)
-            neighbourhood = GetComponent<BoidNeighbourhood>();
+        if(agent == null)
+            agent = GetComponentInParent<Movement_Agent>();
     }
 
     private void RunBehaviors()
@@ -27,7 +27,7 @@ public class SteeringBehaviorManager : MonoBehaviour
         foreach(var behavior in active_behaviors)
         {
             if (!behavior.isActiveAndEnabled) continue;
-            targetSum += behavior.GetTargetSteering(neighbourhood);
+            targetSum += behavior.GetTargetSteering();
         }
 
         
@@ -40,7 +40,7 @@ public class SteeringBehaviorManager : MonoBehaviour
             targetSum *= maxVel;
         }
 
-        neighbourhood.agent.Accelerate(targetSum);
+        agent.Accelerate(targetSum);
     }
 
     // Update is called once per frame
