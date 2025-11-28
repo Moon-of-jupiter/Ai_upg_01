@@ -7,6 +7,11 @@ public class MapTargetUpdator : MonoBehaviour
 
     private void Update()
     {
+        //UpdateTarget();
+    }
+
+    protected void OnClick()
+    {
         UpdateTarget();
     }
 

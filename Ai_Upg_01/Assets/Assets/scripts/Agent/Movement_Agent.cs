@@ -25,12 +25,14 @@ public class Movement_Agent : Gen_Agent
     // Update is called once per frame
     void Update()
     {
+        velocity.y = controller.velocity.y;
+
         if (float.IsNaN(acceleration.z)) acceleration = Vector3.zero;
 
         velocity += acceleration * Time.deltaTime;
         //transform.forward = GetVelocity.normalized;
 
-        velocity.y *= 0.1f;
+        //velocity.y *= 0.1f;
         
         if(float.IsNaN(velocity.z)) velocity = Vector3.zero;
 
