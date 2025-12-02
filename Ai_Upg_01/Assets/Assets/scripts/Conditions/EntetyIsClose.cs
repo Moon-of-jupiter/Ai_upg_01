@@ -11,7 +11,7 @@ public class EntetyIsClose : Condition
         foreach(Gen_Agent a in ofAgents.collection)
         {
             if(a == null) continue;
-            if((a.GetPos() - transform.position).sqrMagnitude <= threshold)
+            if((a.GetPos() - transform.position).sqrMagnitude <= threshold * threshold)
             {
                 return true;
             }

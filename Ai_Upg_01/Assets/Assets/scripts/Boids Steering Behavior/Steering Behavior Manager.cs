@@ -11,7 +11,7 @@ public class SteeringBehaviorManager : MonoBehaviour
 
     public float maxVel = 5;
 
-   
+    public bool updateAcceleration = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +20,7 @@ public class SteeringBehaviorManager : MonoBehaviour
             agent = GetComponentInParent<Movement_Agent>();
     }
 
-    private void RunBehaviors()
+    public void RunBehaviors()
     {
         Vector3 targetSum = Vector3.zero;
 
@@ -46,6 +46,7 @@ public class SteeringBehaviorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RunBehaviors();
+        if (updateAcceleration)
+            RunBehaviors();
     }
 }
