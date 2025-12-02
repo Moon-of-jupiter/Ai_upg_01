@@ -150,6 +150,12 @@ public class BoidNeighbourhood : AgentCollection, INeighbourhood
 
     public bool Raycast(Vector3 ray, out NavMeshHit hit)
     {
+        if(!agent.controller.isOnNavMesh)
+        {
+            hit = default;
+            return false;
+        }
+
 
         bool succsess = agent.controller.Raycast(transform.position + ray, out hit);
 

@@ -11,11 +11,12 @@ public class DescisionTreeManager : MonoBehaviour
     public bool dtIsActive => rootNode != null;
 
     public bool activate;
+    public bool activate_cont;
 
     // Update is called once per frame
     void Update()
     {
-        if (activate)
+        if (activate || activate_cont)
         {
             RunDT();
             activate = false;

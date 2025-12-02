@@ -284,6 +284,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2520829399570593650, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+      propertyPath: tags_on_start.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520829399570593650, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
+      propertyPath: 'tags_on_start.Array.data[1]'
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 4524728073616218459, guid: db25b1aa08913544db93ad3c5d7e6b9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.28

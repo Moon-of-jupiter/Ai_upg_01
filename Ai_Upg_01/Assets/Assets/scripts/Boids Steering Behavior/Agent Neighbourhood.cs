@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class AgentNeighbourhood : MonoBehaviour, INeighbourhood
+public class AgentNeighbourhood : AgentCollection, INeighbourhood
 {
 
     public LinkedList<Gen_Agent> neighbours { get; private set; }
@@ -17,8 +17,12 @@ public class AgentNeighbourhood : MonoBehaviour, INeighbourhood
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+
         neighbours = new LinkedList<Gen_Agent>();
-        if(agent == null)
+        collection = neighbours;
+
+        if (agent == null)
             agent = GetComponentInParent<Gen_Agent>();
     }
 
