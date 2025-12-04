@@ -472,6 +472,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   added_tag: danger
   tags: {fileID: 172294657}
+--- !u!1001 &204682535
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1913881775}
+    m_Modifications:
+    - target: {fileID: 8024105903703377428, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_Name
+      value: Wolf Agent 2 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.684165
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7711201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.377963
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+--- !u!114 &204682536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5944338571769718620, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+  m_PrefabInstance: {fileID: 204682535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0eb9de778a5864f972547d1e4bd8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &204682537 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8137334483058615751, guid: 7271f5d84e4f7be45955e972d07731e4, type: 3}
+  m_PrefabInstance: {fileID: 204682535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &215564031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3799245201363292346, guid: 187f5ee0770045746a7242644d9a9ddd, type: 3}
@@ -2810,6 +2883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901624714}
   - component: {fileID: 1901624715}
+  - component: {fileID: 1901624716}
   m_Layer: 0
   m_Name: Agent Manager
   m_TagString: Untagged
@@ -2852,8 +2926,23 @@ MonoBehaviour:
   agents:
   - {fileID: 1240050334}
   - {fileID: 1534873635}
+  - {fileID: 204682536}
   agent_keeper: {fileID: 1913881775}
   seed: 0
+--- !u!114 &1901624716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901624713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9876926b5be4f48bbd3285fae2e8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agents: {fileID: 1901624715}
+  removalParticles: {fileID: 0}
 --- !u!1 &1913881774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +2974,7 @@ Transform:
   m_Children:
   - {fileID: 495416968}
   - {fileID: 215564031}
+  - {fileID: 204682537}
   m_Father: {fileID: 1901624714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026905545
